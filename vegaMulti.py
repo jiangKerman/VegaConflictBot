@@ -1,11 +1,19 @@
-# Vega conflict的打怪脚本，打怪，
-# 2022年8月22日
-# 指定队伍，没有检测能否秒修，如果受损会消耗金币
-# 需要pillow和opencv-python
 import pyautogui
 import time
 import random
 import sys
+
+# SHIPARRAY = [1, 2, 3, 4, 5, 6, 7]  # 哪几个队伍要刷怪
+# MONSTERARRAY = [1, 2, 1, 1, 2, 2, 1]  # 对应SHIPARRAY要刷的怪物
+
+
+SHIPARRAY = input("出动的舰队:")
+SHIPARRAY = SHIPARRAY.split(" ")
+SHIPARRAY = [int(i) for i in SHIPARRAY]
+
+MONSTERARRAY=input("对应的目标:")
+MONSTERARRAY=MONSTERARRAY.split(" ")
+MONSTERARRAY=[int(i) for i in MONSTERARRAY]
 
 FIND = (1635, 95)  # 找到（标记的船）
 ATTACK = (828, 1009)  # 攻击
@@ -30,11 +38,7 @@ Mark5 = (614, 523)
 Mark6 = (591, 573)
 Mark7 = (585, 636)
 
-SHIPARRAY = [1, 2, 3, 4, 5, 6, 7]  # 哪几个队伍要刷怪
-# SHIPARRAY = [1]  # 哪几个队伍要刷怪
-MONSTERARRAY = [Mark1, Mark1, Mark1, Mark1, Mark2, Mark2, Mark2]  # 对应SHIPARRAY要刷的怪物
-# MONSTERARRAY = [Mark1,Mark2 ]  # 对应SHIPARRAY要刷的怪物
-# SHIPARRAY = ["2", ]
+shipMonsterDict = dict(zip([1, 2, 3, 4, 5, 6, 7], [Mark1, Mark2, Mark3, Mark4, Mark5, Mark6, Mark7]))
 
 print("2秒后开始脚本--多队伍刷图")
 time.sleep(2)
@@ -103,12 +107,12 @@ while (True):
         time.sleep(0.3)
         pyautogui.click(Marked)
         time.sleep(0.3)
-        pyautogui.click(j)
+        pyautogui.click(shipMonsterDict.get(j))
         # 一直等待直到星区切换结束
         while (True):
             time.sleep(0.3)
             if pyautogui.locateOnScreen("img/loading.png", grayscale=True, confidence=0.95) is None:
-                time.sleep(0.3)
+                time.sleep(0.4)
                 break
 
         # 如果要切换星区地图，则多等待几秒
@@ -133,7 +137,6 @@ while (True):
             closeStrike()
             pyautogui.click(huhang)
         time.sleep(random.uniform(RANDOMTIME[0], RANDOMTIME[1]))
-
 
         # 等待20秒后开始下一辆船
         print(f"队伍{i}指令下达")

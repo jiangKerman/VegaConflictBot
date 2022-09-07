@@ -32,7 +32,7 @@ Mark7 = (585, 636)
 
 SHIPARRAY = [1, 2, 3, 4, 5, 6, 7]  # 哪几个队伍要刷怪
 # SHIPARRAY = [1]  # 哪几个队伍要刷怪
-MONSTERARRAY = [Mark1, Mark2, Mark3, Mark4, Mark1, Mark2, Mark3]  # 对应SHIPARRAY要刷的怪物
+MONSTERARRAY = [Mark1, Mark1, Mark1, Mark1, Mark2, Mark2, Mark2]  # 对应SHIPARRAY要刷的怪物
 # MONSTERARRAY = [Mark1,Mark2 ]  # 对应SHIPARRAY要刷的怪物
 # SHIPARRAY = ["2", ]
 
@@ -81,9 +81,9 @@ while (True):
 
         # 选中船编号（先切换到其他舰队，确保能选中）
         pyautogui.press(str(i % 7 + 1))  # 先按一下当前舰队的前一个舰队
-        time.sleep(0.3)
+        time.sleep(0.2)
         pyautogui.press(str(i))
-        time.sleep(1.5)  # 选中1后等一秒等修船信息跳出来
+        time.sleep(1)  # 选中1后等一秒等修船信息跳出来
         # 如果该船正在战斗，则进入下一个船
         if pyautogui.locateOnScreen("img/join.png", grayscale=True, confidence=0.9) is not None:
             continue
@@ -91,7 +91,7 @@ while (True):
         if pyautogui.locateOnScreen("img/repair.png", grayscale=True, confidence=0.9) is not None:
             closeStrike()
             pyautogui.click(REPAIR)
-            time.sleep(1.5)
+            time.sleep(1)
         # 如果船已经爆了就在船厂点修复，然后退出程序
         # if pyautogui.locateOnScreen("img/brokenRepair.png", grayscale=True, confidence=0.90) is not None:
         #     pyautogui.click(REPAIRBROKEN)

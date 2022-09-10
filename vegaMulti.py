@@ -25,7 +25,7 @@ huhangRegion = (826, 351, 1123, 472)  # 只能护送自己的舰队
 spoilsRegion = (831, 128, 1083, 230)  # 关闭战利品
 underAttackRegion = (766, 360, 1132, 465)  # 关闭舰队遭到攻击
 joinRegion = (746, 963, 876, 1064)  # 底部的加入
-
+loadingRegion = (679, 287, 1190, 749)  # 切换星区加载界面
 # 鼠标点击的坐标
 FIND = (1635, 95)  # 找到（标记的船）
 ATTACK = (828, 1009)  # 攻击
@@ -122,13 +122,13 @@ while True:
         pyautogui.click(Marked)
         time.sleep(0.1)
         pyautogui.click(shipMonsterDict.get(j))
-        time.sleep(0.5)
+        time.sleep(0.3)
 
         # # 一直等待直到星区切换结束
-        # while (True):
-        #     if pyautogui.locateOnScreen("img/loading.png", grayscale=True, confidence=0.95) is None:
-        #         time.sleep(0.5)
-        #         break
+        while (True):
+            if pyautogui.locateOnScreen("img/loading.png", grayscale=True, confidence=0.95,region=loadingRegion) is None:
+                time.sleep(0.5)
+                break
 
         # 如果要切换星区地图，则多等待几秒
         # if (i == 1 or i == 3 or i == 5 or i == 7):
@@ -141,7 +141,7 @@ while True:
             continue
         closeStrike()
         pyautogui.click(ATTACK)
-        time.sleep(random.uniform(RANDOMTIME[0], RANDOMTIME[1]))
+        time.sleep(0.1)
         # 如果有则点击（高等级警报）确认
         if pyautogui.locateOnScreen("img/alert.png", grayscale=True, confidence=0.8, region=alertRegion) is not None:
             closeStrike()

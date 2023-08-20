@@ -78,7 +78,7 @@ def closeStrike():
     关闭闪击者
     :return:
     """
-    while pyautogui.locateOnScreen("img1014_768/strike.png", grayscale=True, confidence=0.95,
+    while pyautogui.locateOnScreen("img1024_768/strike.png", grayscale=True, confidence=0.95,
                                    region=strikeRegion) is not None:
         pyautogui.click(CLOSESTRIKE)
         interrupted = True
@@ -91,7 +91,7 @@ def closeUnderAttack():
     :return:
     """
     # 关闭舰队遭到攻击
-    if pyautogui.locateOnScreen("img1014_768/underattack.png", grayscale=True, confidence=0.95,
+    if pyautogui.locateOnScreen("img1024_768/underattack.png", grayscale=True, confidence=0.95,
                                 region=underAttackRegion) is not None:
         pyautogui.click(CLOSEUNDERATTACK)
         time.sleep(sleepTime)
@@ -104,29 +104,29 @@ while True:
     for (i, j) in zip(SHIPARRAY, MONSTERARRAY):
         while True:  # do while，只有不被打断才进行下一个
             # 打怪之前先判断断线重连，点击中间的ok
-            if pyautogui.locateOnScreen("img1014_768/reconnect_ok.png", grayscale=True, confidence=0.90,
+            if pyautogui.locateOnScreen("img1024_768/reconnect_ok.png", grayscale=True, confidence=0.90,
                                         region=reconnectRegion) is not None:
                 pyautogui.click(huhang)
                 time.sleep(sleepTime)
             # 打怪之前先判断断线重连，偏右边的接收
-            if pyautogui.locateOnScreen("img1014_768/reconnectAccept.png", grayscale=True, confidence=0.90,
+            if pyautogui.locateOnScreen("img1024_768/reconnectAccept.png", grayscale=True, confidence=0.90,
                                         region=reconnectAcceptRegion) is not None:
                 pyautogui.click(ReconnectAccept)
                 time.sleep(sleepTime)
 
             interrupted = False  # 标记是否被闪击者打断过，打断过则本轮重来
             # 关闭找不到目标弹窗
-            if pyautogui.locateOnScreen("img1014_768/noTarget.png", grayscale=True, confidence=0.95,
+            if pyautogui.locateOnScreen("img1024_768/noTarget.png", grayscale=True, confidence=0.95,
                                         region=noTargetRegion) is not None:
                 pyautogui.click(CLOSENOTARGET)
                 time.sleep(sleepTime)
             # 关闭“只能护送自己的舰队”
-            if pyautogui.locateOnScreen("img1014_768/huhang.png", grayscale=True, confidence=0.95,
+            if pyautogui.locateOnScreen("img1024_768/huhang.png", grayscale=True, confidence=0.95,
                                         region=huhangRegion) is not None:
                 pyautogui.click(huhang)
                 time.sleep(sleepTime)
             # 关闭高等级警报
-            if pyautogui.locateOnScreen("img1014_768/alert.png", grayscale=True, confidence=0.8,
+            if pyautogui.locateOnScreen("img1024_768/alert.png", grayscale=True, confidence=0.8,
                                         region=alertRegion) is not None:
                 pyautogui.click(CLOSEALERT)
                 time.sleep(sleepTime)
@@ -138,19 +138,19 @@ while True:
             pyautogui.press(str(i))
             time.sleep(1)  # 选中1后等一秒等修船信息跳出来
             # 如果该船正在战斗，则进入下一个船
-            if pyautogui.locateOnScreen("img1014_768/join.png", grayscale=True, confidence=0.9,
+            if pyautogui.locateOnScreen("img1024_768/join.png", grayscale=True, confidence=0.9,
                                         region=joinRegion) is not None:
                 print(f"ship {i} attacking")
                 break
             # 如果可以免费修则修船
-            if pyautogui.locateOnScreen("img1014_768/repair.png", grayscale=True, confidence=0.9,
+            if pyautogui.locateOnScreen("img1024_768/repair.png", grayscale=True, confidence=0.9,
                                         region=repairRegion) is not None:
                 closeStrike()
                 closeUnderAttack()
                 pyautogui.click(REPAIR)
                 time.sleep(1)
             # 如果船已经爆了就在船厂点修复，然后退出程序
-            if pyautogui.locateOnScreen("img1014_768/brokenRepair.png", grayscale=True, confidence=0.90,
+            if pyautogui.locateOnScreen("img1024_768/brokenRepair.png", grayscale=True, confidence=0.90,
                                         region=finalRepairRegion) is not None:
                 pyautogui.click(REPAIRBROKEN)
                 print("repair")
@@ -172,7 +172,7 @@ while True:
 
             # # 一直等待直到星区切换结束
             while True:
-                if pyautogui.locateOnScreen("img1014_768/loading.png", grayscale=True, confidence=0.95,
+                if pyautogui.locateOnScreen("img1024_768/loading.png", grayscale=True, confidence=0.95,
                                             region=loadingRegion) is None:
                     time.sleep(0.5)
                     break
@@ -184,7 +184,7 @@ while True:
             #     time.sleep(0.3)
 
             # 点击攻击,攻击之前需要判定是否真的是攻击（有可能这一秒已经变成了加入或者查看[怪被抢了]）,如果不是攻击，则回到起点
-            if pyautogui.locateOnScreen("img1014_768/attack.png", grayscale=True, confidence=0.95,
+            if pyautogui.locateOnScreen("img1024_768/attack.png", grayscale=True, confidence=0.95,
                                         region=joinRegion) is None:
                 continue
             closeStrike()
@@ -192,14 +192,14 @@ while True:
             pyautogui.click(ATTACK)
             time.sleep(0.1)
             # 如果有则点击（高等级警报）确认
-            if pyautogui.locateOnScreen("img1014_768/alert.png", grayscale=True, confidence=0.8,
+            if pyautogui.locateOnScreen("img1024_768/alert.png", grayscale=True, confidence=0.8,
                                         region=alertRegion) is not None:
                 closeStrike()
                 closeUnderAttack()
                 pyautogui.click(CLOSEALERT)
             time.sleep(sleepTime)
             # 如果有则点击（组队舰队异常危险）确认
-            if pyautogui.locateOnScreen("img1014_768/huhang.png", grayscale=True, confidence=0.8,
+            if pyautogui.locateOnScreen("img1024_768/huhang.png", grayscale=True, confidence=0.8,
                                         region=huhangRegion) is not None:
                 closeStrike()
                 closeUnderAttack()

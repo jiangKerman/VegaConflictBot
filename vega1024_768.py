@@ -2,7 +2,6 @@
 
 import pyautogui
 import time
-import random
 import sys
 import os
 

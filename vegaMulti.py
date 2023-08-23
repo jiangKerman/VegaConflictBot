@@ -126,7 +126,8 @@ while True:
 
         # # 一直等待直到星区切换结束
         while (True):
-            if pyautogui.locateOnScreen("img/loading.png", grayscale=True, confidence=0.95,region=loadingRegion) is None:
+            if pyautogui.locateOnScreen("img/loading.png", grayscale=True, confidence=0.95,
+                                        region=loadingRegion) is None:
                 time.sleep(0.5)
                 break
 
